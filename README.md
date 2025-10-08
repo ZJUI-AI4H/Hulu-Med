@@ -235,6 +235,7 @@ Hulu-Med consists of four core components:
 - ✅ Medical Text Reasoning
 - ✅ Multilingual Medical QA
 - ✅ Rare Disease Diagnosis
+- More 
 
 ## 📄 Citation
 
