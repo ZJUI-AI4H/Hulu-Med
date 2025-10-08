@@ -1,0 +1,42 @@
+--extra-index-url https://download.pytorch.org/whl/cu118
+torch==2.4.0
+torchvision==0.19.0
+datasets==2.21.0
+transformers==4.46.3
+tokenizers==0.20.3
+deepspeed==0.15.4
+accelerate==1.0.1
+peft==0.4.0
+nibabel==5.3.2
+timm==1.0.3
+numpy==1.24.4
+# data processing
+decord==0.6.0
+imageio==2.34.0
+imageio-ffmpeg==0.4.9
+moviepy==1.0.3
+opencv-python==4.6.0.66
+pyarrow
+pysubs2
+ffmpeg-python
+# misc
+scikit-learn==1.2.2
+huggingface_hub==0.23.4
+sentencepiece==0.1.99
+shortuuid
+einops==0.6.1
+einops-exts==0.0.4
+bitsandbytes==0.43.3 # for cuda 124
+pydantic>=2.0
+markdown2[all]
+gradio==3.50.0
+gradio_client==0.6.1
+httpx==0.24.1
+requests
+openai
+uvicorn
+fastapi
+tensorboard
+wandb
+tabulate
+Levenshtein
