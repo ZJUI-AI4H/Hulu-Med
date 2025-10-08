@@ -13,7 +13,7 @@
 
 ## 🔥 News
 
-- **[2025-10-08]** Hulu-Med models and training code released!
+- **[2025-10-08]** Hulu-Med models and inference code released!
 
 ## 📖 Overview
 
