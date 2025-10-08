@@ -23,7 +23,6 @@
 <img src="https://github.com/user-attachments/files/22758795/Github_fig.pdf" width="100%">
 </div>
 
-
 ### Key Features
 
 - 🌟 **Holistic Multimodal Understanding**: Seamlessly processes medical text, 2D images, 3D volumes, and surgical videos
@@ -44,39 +43,30 @@ Our training corpus encompasses:
 
 ### Medical Multimodal Benchmarks
 
-**Table 1**: Performance comparison on medical multimodal benchmarks. For the 'Medical VLM < 10B' subgroup, **bold** and <u>underline</u> scores indicate the best and second-best methods, respectively.
+Performance comparison on medical multimodal benchmarks (For the 'Medical VLM < 10B' subgroup, **bold** indicates the best method):
 
-| Models | Multi-modality Benchmarks |  | Specific-modality Benchmarks |  |  | Reasoning Benchmark | Knowledge-based Benchmark |
-|--------|---------|---------|---------|-------|---------|---------|------------|
-|  | OM.VQA | PMCVQA | VQA-RAD | SLAKE | PathVQA | MedXQA | MMMU-Med |
-
-**Proprietary Models**
+| Models | OM.VQA | PMC-VQA | VQA-RAD | SLAKE | PathVQA | MedXQA | MMMU-Med |
+|--------|--------|---------|---------|-------|---------|--------|----------|
+| **Proprietary Models** |
 | GPT-4.1 | 75.5 | 55.2 | 65.0 | 72.2 | 55.5 | 45.2 | 75.2 |
 | GPT-4o | 67.5 | 49.7 | 61.0 | 71.2 | 55.5 | 44.3 | 62.8 |
 | Claude Sonnet 4 | 65.5 | 54.4 | 67.6 | 70.6 | 54.2 | 43.3 | 74.6 |
 | Gemini-2.5-Flash | 71.0 | 55.4 | 68.5 | 75.8 | 55.4 | 52.8 | 76.9 |
-
-**General-purpose Multimodal VLMs (Models < 10B)**
+| **General VLMs (< 10B)** |
 | Qwen2.5VL-7B | 63.6 | 51.9 | 63.2 | 66.8 | 44.1 | 20.1 | 50.6 |
-| Janus-Pro-7B | 59.6 | 50.1 | 49.7 | 55.2 | 35.4 | 18.4 | 36.1 |
 | InternVL2.5-8B | 81.3 | 51.3 | 59.4 | 69.0 | 42.1 | 21.7 | 53.5 |
 | InternVL3-8B | 79.1 | 53.8 | 65.4 | 72.8 | 48.6 | 22.4 | 59.2 |
-
-**General-purpose Multimodal VLMs (Models > 10B)**
-| Llama3.2-11B | 43.8 | 48.1 | 58.8 | 65.8 | 32.9 | 20.1 | 51.0 |
+| **General VLMs (> 10B)** |
 | InternVL3-14B | 78.9 | 54.1 | 66.3 | 72.8 | 48.0 | 23.1 | 63.1 |
 | Qwen2.5V-32B | 68.2 | 54.5 | 71.8 | 71.2 | 41.9 | 25.2 | 59.6 |
-| InternVL2.5-38B | 79.9 | 57.2 | 61.4 | 70.3 | 46.9 | 24.4 | 61.6 |
 | InternVL3-38B | 79.8 | 56.6 | 65.4 | 72.7 | 51.0 | 25.2 | 65.2 |
-
-**Medical Multimodal VLMs (Models < 10B)**
+| **Medical VLMs (< 10B)** |
 | LLaVA-Med-7B | 34.8 | 22.7 | 46.6 | 51.9 | 35.2 | 20.8 | 28.1 |
-| MedGemma-4B-IT | 70.7 | 49.2 | 72.3 | 78.2 | 48.1 | 25.4 | 43.2 |
+| MedGemma-4B | 70.7 | 49.2 | 72.3 | 78.2 | 48.1 | 25.4 | 43.2 |
 | HuatuoGPT-V-7B | 74.3 | 53.1 | 67.6 | 68.1 | 44.8 | 23.2 | 49.8 |
 | Lingshu-7B | 82.9 | 56.3 | 67.9 | 83.1 | 61.9 | 26.7 | - |
 | **Hulu-Med-7B** | **84.2** | **66.8** | **78.0** | **86.8** | **65.6** | **29.0** | **51.4** |
-
-**Medical Multimodal VLMs (Models > 10B)**
+| **Medical VLMs (> 10B)** |
 | HealthGPT-14B | 75.2 | 56.4 | 65.0 | 66.1 | 56.7 | 24.7 | 49.6 |
 | HuatuoGPT-V-34B | 74.0 | 56.6 | 61.4 | 69.5 | 44.4 | 22.1 | 51.8 |
 | Lingshu-32B | 83.4 | 57.9 | 76.7 | 86.7 | 65.5 | 30.9 | - |
@@ -85,41 +75,30 @@ Our training corpus encompasses:
 
 ### Medical Text Benchmarks
 
-**Table 2**: Performance comparison on medical text benchmarks. Within each open-source subgroup, **bold** and <u>underline</u> scores indicate the best and second-best methods, respectively.
+Performance comparison on medical text benchmarks (**bold** indicates the best method in each subgroup):
 
-| Models | Complex Reasoning Benchmarks |  |  |  | Text Understanding | Medical Exam Benchmarks |  |  |
-|--------|---------------|---------|-----------|-------|------------|---------|-------|---------|
-|  | MMLU-Pro-Med | MedXQA | Medbullets | SGPQA | PubMedQA | MedMCQA | MedQA | MMLU-Med |
-
-**Proprietary Models**
+| Models | MMLU-Pro | MedXQA | Medbullets | SGPQA | PubMedQA | MedMCQA | MedQA | MMLU-Med |
+|--------|----------|--------|------------|-------|----------|---------|-------|----------|
+| **Proprietary Models** |
 | GPT-4.1 | 78.0 | 30.9 | 77.0 | 49.9 | 75.6 | 77.7 | 89.1 | 89.6 |
 | o3-mini | 78.1 | 35.4 | 83.7 | 50.1 | 73.6 | 60.6 | 74.5 | 87.0 |
-| GPT-4o | 75.6 | 25.9 | 76.3 | 45.9 | 71.8 | 76.9 | 89.2 | 88.2 |
 | Claude Sonnet 4 | 79.5 | 33.6 | 80.2 | 56.3 | 78.6 | 79.3 | 92.1 | 91.3 |
 | Gemini-2.5-Flash | 70.0 | 35.6 | 77.6 | 53.3 | 73.8 | 73.6 | 91.2 | 84.2 |
-| Deepseek-V3 | 74.6 | 20.0 | 48.4 | 32.1 | 77.7 | 88.0 | 51.0 | 86.5 |
-
-**General-purpose Multimodal VLMs (Models < 10B)**
+| **General VLMs (< 10B)** |
 | Qwen2.5VL-7B | 50.5 | 12.8 | 42.1 | 26.3 | 76.4 | 52.6 | 57.3 | 73.4 |
-| Janus-Pro-7B | 20.2 | 10.0 | 30.2 | 14.8 | 72.0 | 37.5 | 37.4 | 46.4 |
 | InternVL2.5-8B | 50.6 | 11.6 | 42.4 | 26.1 | 76.4 | 52.4 | 53.7 | 74.2 |
 | InternVL3-8B | 57.9 | 13.1 | 48.5 | 31.2 | 75.4 | 57.7 | 62.1 | 77.5 |
-
-**General-purpose Multimodal VLMs (Models > 10B)**
+| **General VLMs (> 10B)** |
 | Qwen2.5VL-32B | 66.5 | 15.6 | 54.2 | 37.6 | 68.4 | 63.0 | 71.6 | 83.2 |
 | InternVL3-14B | 65.4 | 14.1 | 49.5 | 37.9 | 77.2 | 62.0 | 70.1 | 81.7 |
-| InternVL2.5-38B | 71.5 | 14.7 | 55.0 | 39.9 | 74.2 | 65.9 | 74.4 | 84.6 |
 | InternVL3-38B | 72.1 | 16.0 | 54.6 | 42.5 | 73.2 | 64.9 | 73.5 | 83.8 |
-
-**Medical Multimodal VLMs (Models < 10B)**
+| **Medical VLMs (< 10B)** |
 | LLaVA-Med-7B | 16.6 | 9.9 | 34.4 | 16.1 | 26.4 | 39.4 | 42.0 | 50.6 |
-| MedGemma-4B-IT | 38.6 | 12.8 | 45.6 | 21.6 | 72.2 | 52.2 | 56.2 | 66.7 |
-| HealthGPT-M3 | 38.3 | 11.5 | 41.4 | 18.9 | 57.8 | 54.2 | 55.0 | 72.5 |
+| MedGemma-4B | 38.6 | 12.8 | 45.6 | 21.6 | 72.2 | 52.2 | 56.2 | 66.7 |
 | HuatuoGPT-V-7B | 44.6 | 10.1 | 40.9 | 21.9 | 72.8 | 51.2 | 52.9 | 69.3 |
 | Lingshu-7B | 50.4 | 16.5 | 56.2 | 26.3 | 76.6 | 55.9 | 63.3 | 74.5 |
 | **Hulu-Med-7B** | **60.6** | **19.6** | **61.5** | **31.1** | **77.4** | **67.6** | **73.5** | **79.5** |
-
-**Medical Multimodal VLMs (Models > 10B)**
+| **Medical VLMs (> 10B)** |
 | HealthGPT-14B | 63.4 | 11.3 | 39.8 | 25.7 | 68.0 | 63.4 | 66.2 | 80.2 |
 | Lingshu-32B | 70.2 | 22.7 | 65.4 | 41.1 | 77.8 | 66.1 | 74.7 | 84.7 |
 | HuatuoGPT-V-34B | 51.8 | 11.4 | 42.7 | 26.5 | 72.2 | 54.7 | 58.8 | 74.7 |
@@ -146,5 +125,136 @@ cd Hulu-Med
 conda create -n hulumed python=3.10
 conda activate hulumed
 
-# Install dependencies
+# PyTorch and torchvision for CUDA 11.8
+pip install torch==2.4.0 torchvision==0.19.0 --extra-index-url https://download.pytorch.org/whl/cu118
+
+# Flash-attn pinned to a compatible version
+pip install flash-attn==2.7.3 --no-build-isolation --upgrade
+
+# Transformers and accelerate
+pip install transformers==4.51.2 accelerate==1.7.0
+
+# Video processing dependencies
+pip install decord ffmpeg-python imageio opencv-python
+
+# Install other dependencies
 pip install -r requirements.txt
+```
+
+## 💻 Quick Start
+
+### Inference Example
+```python
+import torch
+from transformers import AutoModelForCausalLM, AutoProcessor
+from hulumed import disable_torch_init, model_init, mm_infer
+from hulumed import disable_torch_init, model_init, mm_infer
+from hulumed.model import load_pretrained_model
+from hulumed.mm_utils import load_images, process_images, load_video, process_video, tokenizer_multimodal_token, get_model_name_from_path, KeywordsStoppingCriteria
+from hulumed.model.processor import HulumedProcessor
+import os
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+model_path = "xxxxxx"
+model_name = get_model_name_from_path(model_path)
+tokenizer, model, image_processor, context_len = load_pretrained_model(model_path, None, model_name,device_map='cuda:0')
+processor = HulumedProcessor(image_processor, tokenizer)
+slices = load_images(
+    "./demo/demo.jpg", 
+)
+conversation = [
+        {
+            "role": "user",
+            "content": [
+               {"type": "image"},
+                {"type": "text", "text": "Describe this image in detail."},
+            ]
+        }
+    ]
+modal='image'
+model=model.to("cuda:0")
+inputs = processor(
+        images=[slices] if modal != "text" else None,
+        text=conversation,
+        merge_size=2 if modal == "video" else 1,
+        return_tensors="pt"
+        )
+inputs = {k: v.cuda().to('cuda:0') if isinstance(v, torch.Tensor) else v for k, v in inputs.items()}
+if "pixel_values" in inputs:
+    inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+with torch.inference_mode():
+        output_ids = model.generate(
+            **inputs,
+            do_sample=True,
+            modals=[modal],
+            temperature=0.6,
+            max_new_tokens=8192,
+            use_cache=True,
+            pad_token_id=tokenizer.eos_token_id,
+        )
+
+outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
+print(outputs)
+
+```
+
+## 📊 Training
+
+### Data Preparation
+
+Our training data consists of 16.7M samples across four categories:
+
+- **Medical Multimodal Data** (9M samples): Covering 14 imaging modalities
+- **Medical Text Data** (4.9M samples): Clinical notes, literature, QA pairs
+- **General Multimodal Data** (1.3M samples): Enhancing generalization
+- **General Text Data** (1.5M samples): Improving reasoning capabilities
+
+Download and prepare the data:
+```bash
+# Download data preparation scripts
+python scripts/prepare_data.py --output_dir ./data
+```
+
+## 🏗️ Model Architecture
+
+Hulu-Med consists of four core components:
+
+1. **Vision Encoder**: SigLIP-based encoder with 2D RoPE for unified 2D/3D/video processing
+2. **Multimodal Projector**: Projects visual tokens into language model space
+3. **LLM Decoder**: Qwen-based decoder for generating responses
+4. **Medical-Aware Token Reduction**: Efficient processing with ~55% token reduction
+
+## 📋 Supported Tasks
+
+- ✅ Visual Question Answering (2D/3D/Video)
+- ✅ Medical Report Generation
+- ✅ Disease Diagnosis
+- ✅ Anatomical Understanding
+- ✅ Surgical Phase Recognition
+- ✅ Clinical Dialogue
+- ✅ Medical Text Reasoning
+- ✅ Multilingual Medical QA
+- ✅ Rare Disease Diagnosis
+
+## 📄 Citation
+
+If you find Hulu-Med useful in your research, please cite:
+```bibtex
+@article{jiang2025hulumed,
+  title={Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding},
+  author={Jiang, Songtao and Wang, Yuan and Hu, Tianxiang and others},
+  journal={arXiv preprint arXiv:xxxx.xxxxx},
+  year={2025}
+}
+```
+
+
+## 📜 License
+
+This project is released under the [Apache 2.0 License](LICENSE).
+
+---
+
+<div align="center">
+Made with ❤️ by the ZJU AI4H Team
+</div>
