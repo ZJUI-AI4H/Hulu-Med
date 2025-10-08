@@ -2,10 +2,10 @@
 torch==2.4.0
 torchvision==0.19.0
 datasets==2.21.0
-transformers==4.46.3
+transformers==4.51.2
 tokenizers==0.20.3
 deepspeed==0.15.4
-accelerate==1.0.1
+accelerate==1.7.0
 peft==0.4.0
 nibabel==5.3.2
 timm==1.0.3
@@ -38,5 +38,6 @@ uvicorn
 fastapi
 tensorboard
 wandb
+swanlab
 tabulate
 Levenshtein
