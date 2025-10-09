@@ -31,26 +31,20 @@ def slice_nifti_to_images(nifti_path, num_slices=180, axis='axial'):
         
         slice_axis = axis_map[axis]
 
-        # 1. 使用 nibabel 加载 NIfTI 文件
         nifti_file = nib.load(nifti_path)
-        # 获取图像数据作为 numpy 数组
         image_data = nifti_file.get_fdata()
 
-        # 2. 从3D数据中采样切片
         num_total_slices = image_data.shape[slice_axis]
         
-        # 使用 np.linspace 均匀采样 `num_slices` 个切片的索引
-        # 即使总切片数少于 num_slices，也能正常工作
         sampled_indices = np.linspace(0, num_total_slices - 1, num_slices, dtype=int)
         
         images = []
         for slice_index in sampled_indices:
-            # 3. 提取单个2D切片
-            if slice_axis == 0: # Sagittal
+            if slice_axis == 0:
                 slice_2d = image_data[slice_index, :, :]
-            elif slice_axis == 1: # Coronal
+            elif slice_axis == 1:
                 slice_2d = image_data[:, slice_index, :]
-            else: # Axial
+            else:
                 slice_2d = image_data[:, :, slice_index]
             if slice_2d.max() > slice_2d.min():
                 slice_2d = (slice_2d - slice_2d.min()) / (slice_2d.max() - slice_2d.min()) * 255.0
@@ -88,16 +82,6 @@ def expand2square(pil_img, background_color):
 
 
 def grid_divide(image, cell_size):
-    """
-    Divides an image into grid of a specified size.
-
-    Args:
-        image (PIL.Image.Image): The input image.
-        cell_size (int): The size of each cell.
-
-    Returns:
-        list: A list of PIL.Image.Image objects representing the patches.
-    """
     grid = []
     width, height = image.size
     for i in range(0, height, cell_size):
@@ -109,15 +93,6 @@ def grid_divide(image, cell_size):
 
     return grid
 def load_images(image_path, nii_slice_axis='axial', nii_num_slices=180):
-    """
-    加载图像。现在支持单张图片、图片目录、图片列表、PIL Image对象以及NIfTI (.nii, .nii.gz)文件。
-
-    Args:
-        image_path (str, list, PIL.Image): 输入的图像源。
-        nii_slice_axis (str, optional): 当输入为NIfTI文件时，指定切片轴。
-                                        可选值为 'axial', 'coronal', 'sagittal'。默认为 'axial'。
-        nii_num_slices (int, optional): 当输入为NIfTI文件时，指定要切出的切片数量。默认为 180。
-    """
     images = []
 
     def safe_open(f):
@@ -125,11 +100,10 @@ def load_images(image_path, nii_slice_axis='axial', nii_num_slices=180):
             with Image.open(f).convert('RGB') as img:
                 return img
         except Exception:
-            pass  # 读取失败则跳过
+            pass
 
-    # 新增：处理 NIfTI 文件
     if isinstance(image_path, str) and (image_path.endswith('.nii') or image_path.endswith('.nii.gz')):
-        print(f"检测到 NIfTI 文件，沿 '{nii_slice_axis}' 轴切成 {nii_num_slices} 个切片...")
+        print(f"Detected NIfTI file, slicing into {nii_num_slices} slices along '{nii_slice_axis}' axis...")
         images = slice_nifti_to_images(image_path, num_slices=nii_num_slices, axis=nii_slice_axis)
 
     elif isinstance(image_path, str) and os.path.isfile(image_path):
@@ -147,9 +121,8 @@ def load_images(image_path, nii_slice_axis='axial', nii_num_slices=180):
 
     elif isinstance(image_path, list) and isinstance(image_path[0], str):
         for f in image_path:
-            # 同样在这里为列表中的 .nii 文件添加支持
             if f.endswith('.nii') or f.endswith('.nii.gz'):
-                print(f"检测到 NIfTI 文件，沿 '{nii_slice_axis}' 轴切成 {nii_num_slices} 个切片...")
+                print(f"Detected NIfTI file, slicing into {nii_num_slices} slices along '{nii_slice_axis}' axis...")
                 images.extend(slice_nifti_to_images(f, num_slices=nii_num_slices, axis=nii_slice_axis))
             else:
                 img = safe_open(f)
@@ -163,11 +136,10 @@ def load_images(image_path, nii_slice_axis='axial', nii_num_slices=180):
         images = [image_path.convert('RGB')]
 
     else:
-        # 如果没有匹配的类型，并且不是已知文件类型，则引发错误
         if isinstance(image_path, str):
-             raise ValueError(f"不支持的图像路径或文件类型: {image_path}")
+             raise ValueError(f"Unsupported image path or file type: {image_path}")
         else:
-             raise ValueError(f"不支持的图像路径类型: {type(image_path)}")
+             raise ValueError(f"Unsupported image path type: {type(image_path)}")
 
     return images
 
@@ -196,7 +168,6 @@ def find_closest_aspect_ratio(src_ratio, tgt_ratios, ori_size, tgt_size):
 
 
 def process_dynamic_image(image, image_size=384, use_thumbnail=True):
-    # Grid Params:
     min_num = 1
     max_num = 12
 
@@ -206,52 +177,17 @@ def process_dynamic_image(image, image_size=384, use_thumbnail=True):
     ori_size = image.size
     aspect_ratio = ori_size[0] / ori_size[1]
 
-    # calculate the existing image aspect ratio
     tgt_ratios = []
     for n in range(min_num, max_num + 1):
         tgt_ratios.extend([(i, j) for i in range(1, n + 1) for j in range(1, n + 1) if i * j <= max_num and i * j >= min_num])
     tgt_ratios = set(tgt_ratios)
     tgt_ratios = sorted(tgt_ratios, key=lambda x: x[0] * x[1])
 
-    # find the closest aspect ratio to the target
     tgt_ratio = find_closest_aspect_ratio(aspect_ratio, tgt_ratios, ori_size, image_size)
 
-    # resize the image to the target size
     tgt_width = image_size[0] * tgt_ratio[0]
     tgt_height = image_size[1] * tgt_ratio[1]
     resized_img = image.resize((tgt_width, tgt_height))
-
-    # NOTE: internvl2 style split the image into one column grids
-    # num_grids = tgt_ratio[0] * tgt_ratio[1]
-    # grid_images = []
-    # for i in range(num_grids):
-    #     box = (
-    #         (i %  tgt_ratio[0]) * image_size[0],
-    #         (i // tgt_ratio[0]) * image_size[1],
-    #         (i %  tgt_ratio[0] + 1) * image_size[0],
-    #         (i // tgt_ratio[0] + 1) * image_size[1],
-    #     )
-    #     # crop out the grid image
-    #     grid_images.append(resized_img.crop(box))
-    # assert len(grid_images) == num_grids
-    # grid_images = [grid_images]
-
-    # NOTE: eager implementation
-    # num_grids = tgt_ratio[0] * tgt_ratio[1]
-    # sub_grid_images = []
-    # tmp_grid_images = []
-    # for i in range(num_grids):
-    #     box = (
-    #         (i %  tgt_ratio[0]) * image_size[0],
-    #         (i // tgt_ratio[0]) * image_size[1],
-    #         (i %  tgt_ratio[0] + 1) * image_size[0],
-    #         (i // tgt_ratio[0] + 1) * image_size[1],
-    #     )
-    #     tmp_grid_images.append(resized_img.crop(box))
-
-    #     if (i + 1) % tgt_ratio[0] == 0:
-    #         sub_grid_images.append(tmp_grid_images)
-    #         tmp_grid_images = []
 
     image_grid = grid_divide(resized_img, image_size[0])
 
@@ -263,7 +199,6 @@ def process_dynamic_image(image, image_size=384, use_thumbnail=True):
 
 
 def process_highres_image(image_path, image_size=384, use_thumbnail=True, padding_value=(0, 0, 0)):
-    # Grid Params:
     grid_width = [1, 2, 3]
     grid_width_real = [x * image_size for x in grid_width]
 
@@ -286,16 +221,6 @@ def process_highres_image(image_path, image_size=384, use_thumbnail=True, paddin
 
 
 def select_best_resolution(original_size, possible_resolutions):
-    """
-    Selects the best resolution from a list of possible resolutions based on the original size.
-
-    Args:
-        original_size (tuple): The original size of the image in the format (width, height).
-        possible_resolutions (list): A list of possible resolutions in the format [(width1, height1), (width2, height2), ...].
-
-    Returns:
-        tuple: The best fit resolution in the format (width, height).
-    """
     original_width, original_height = original_size
     best_fit = None
     max_effective_resolution = 0
@@ -316,23 +241,11 @@ def select_best_resolution(original_size, possible_resolutions):
 
 
 def process_anyres_image(image, image_size=384, use_thumbnail=True, padding_value=(0, 0, 0)):
-    """
-    Process an image with variable resolutions.
-
-    Args:
-        image (PIL.Image.Image): The input image to be processed.
-        processor: The image processor object.
-
-    Returns:
-        torch.Tensor: A tensor containing the processed image patches.
-    """
-    # Grid Params:
     possible_grids = [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)]
     possible_resolutions = [(x * image_size, y * image_size) for x, y in possible_grids]
 
     best_resolution = select_best_resolution(image.size, possible_resolutions)
 
-    # resize and padding image
     nw, nh = best_resolution
     ow, oh = image.size
 
@@ -352,7 +265,6 @@ def process_anyres_image(image, image_size=384, use_thumbnail=True, padding_valu
 
 
 def process_adares_image(image_path, image_size=384, use_thumbnail=True):
-    # Grid Params:
     min_num = 1
     max_num = 12
 
@@ -362,17 +274,14 @@ def process_adares_image(image_path, image_size=384, use_thumbnail=True):
     ori_size = image.size
     aspect_ratio = ori_size[0] / ori_size[1]
 
-    # calculate the existing image aspect ratio
     tgt_ratios = []
     for n in range(min_num, max_num + 1):
         tgt_ratios.extend([(i, j) for i in range(1, n + 1) for j in range(1, n + 1) if i * j <= max_num and i * j >= min_num])
     tgt_ratios = set(tgt_ratios)
     possible_resolutions = [(x * image_size[0], y * image_size[1]) for x, y in tgt_ratios]
 
-    # find the most possible resolution
     best_resolution = select_best_resolution(ori_size, possible_resolutions)
 
-    # resize the image to the target size
     resized_img = image.resize((best_resolution[0], best_resolution[1]))
 
     image_grid = grid_divide(resized_img, image_size[0])
@@ -415,22 +324,6 @@ def frame_sample(duration, mode='uniform', num_frames=None, vid_fps=None, fps=No
         assert num_frames is not None, "Number of frames must be provided for uniform sampling."
         if duration <= num_frames:
             return np.arange(duration).astype(int)
-        # NOTE: v1 version
-        # Calculate the size of each segment from which a frame will be extracted
-        # if duration <= num_frames:
-        #     return np.arange(duration).astype(int)
-        # seg_size = float(duration - 1) / num_frames
-
-        # frame_ids = []
-        # for i in range(num_frames):
-        #     # Calculate the start and end indices of each segment
-        #     start = seg_size * i
-        #     end   = seg_size * (i + 1)
-        #     # Append the middle index of the segment to the list
-        #     frame_ids.append((start + end) / 2)
-
-        # return np.round(np.array(frame_ids) + 1e-6).astype(int)
-        # NOTE: v0 version
         return np.linspace(0, duration-1, num_frames, dtype=int)
     elif mode == 'fps':
         assert vid_fps is not None, "FPS must be provided for FPS sampling."
@@ -450,7 +343,6 @@ def load_video_from_ids(video_path, s=None, e=None, fps=None, max_frames=None, t
         elif s == e:
             e = s + 1
 
-    # 1. Loading Video
     if os.path.isdir(video_path):
         frame_files = sorted(os.listdir(video_path))
 
@@ -463,18 +355,14 @@ def load_video_from_ids(video_path, s=None, e=None, fps=None, max_frames=None, t
         num_frames_of_video = len(gif_reader)
     else:
         vreader = VideoReader(video_path, ctx=cpu(0), num_threads=64)
-        # vreader = VideoReader(video_path, ctx=cpu(0), num_threads=1)
-
         vid_fps = vreader.get_avg_fps()
         num_frames_of_video = len(vreader)
 
-    # 2. Determine frame range & Calculate frame indices
     f_start = 0                       if s is None else max(int(s * vid_fps) - 1, 0)
     f_end   = num_frames_of_video - 1 if e is None else min(int(e * vid_fps) - 1, num_frames_of_video - 1)
     frame_indices = list(range(f_start, f_end + 1))
 
     duration = len(frame_indices)
-    # 3. Sampling frame indices
     max_frames = max_frames if max_frames is not None else MAX_FRAMES
     if fps is not None and duration / vid_fps < max_frames:
         sampled_frame_indices = [frame_indices[i] for i in frame_sample(duration, mode='fps', vid_fps=vid_fps, fps=fps)]
@@ -486,28 +374,22 @@ def load_video_from_ids(video_path, s=None, e=None, fps=None, max_frames=None, t
         for frame_idx in sampled_frame_indices:
             filepath = os.path.join(video_path, frame_files[frame_idx])
             try:
-                # 步骤 1: 读取图像
                 with Image.open(filepath).convert('RGB') as img:
                     frames.append(img)
             except Exception as e:
-                print(f"警告: 处理文件 {filepath} 时发生错误，跳过该文件。错误信息: {e}")
+                print(f"Error with {filepath} with {e}")
                 pass
     elif video_path.endswith('.gif'):
         frames = [cv2.cvtColor(frame, cv2.COLOR_RGBA2RGB) for idx, frame in enumerate(gif_reader) if idx in sampled_frame_indices]
     else:
         frames = vreader.get_batch(sampled_frame_indices).asnumpy()
 
-    # frames = frames.transpose(0, 3, 1, 2)
     timestamps = [x / vid_fps for x in sampled_frame_indices]
 
     if temporal_factor > 1:
         pad_length = temporal_factor - len(frames) % temporal_factor
         frames = np.concatenate([frames, frames[-1:].repeat(pad_length, axis=0)])
         [timestamps.append(timestamps[-1] + 1 / fps) for _ in range(pad_length)]
-
-    # NOTE: pad the video with black frames
-    # while num_frames is not None and len(video_data) < num_frames:
-    #     video_data.append(Image.fromarray(np.zeros((*video_data[-1].size, 3), dtype=np.uint8)))
 
     return frames, timestamps
 
@@ -522,25 +404,7 @@ def load_video(
     size_divisible: int = 1,
     temporal_factor: int = 1
 ):
-    """
-    使用 decord 加载和处理视频文件，并返回帧和时间戳。
-
-    Args:
-        video_path (str): 视频文件路径。
-        start_time (float, optional): 开始时间（秒）。默认为 None。
-        end_time (float, optional): 结束时间（秒）。默认为 None。
-        fps (float, optional): 输出帧率。默认为 None。
-        max_frames (int, optional): 最大帧数。默认为 None。
-        size (int, optional): 短边的目标尺寸。默认为 None。
-        size_divisible (int, optional): 尺寸对齐因子。默认为 1。
-        temporal_factor (int, optional): 时间填充因子。默认为 1。
-
-    Returns:
-        frames (List[np.ndarray]): 帧列表。
-        timestamps (List[float]): 每帧的时间戳。
-    """
     if isinstance(video_path, list):
-        #print('video is a list')
         video_path = video_path[0]
     if start_time is not None and end_time is not None and end_time - start_time < 1:
         return load_video_from_ids(video_path, start_time, end_time, fps=fps, max_frames=max_frames)
@@ -549,15 +413,13 @@ def load_video(
     if video_path.endswith('.gif'):
         return load_video_from_ids(video_path, start_time, end_time, fps=fps, max_frames=max_frames)
     if not os.path.exists(video_path):
-        raise FileNotFoundError(f"视频文件不存在: {video_path}")
+        raise FileNotFoundError(f"Video not exist: {video_path}")
 
-    # 使用 decord 加载视频
     vr = VideoReader(video_path, ctx=cpu(0))
-    video_fps = vr.get_avg_fps()  # 获取视频的原始帧率
-    total_frames = len(vr)  # 总帧数
-    duration = total_frames / video_fps  # 视频总时长（秒）
+    video_fps = vr.get_avg_fps()
+    total_frames = len(vr)
+    duration = total_frames / video_fps
 
-    # 处理时间范围
     start_frame = 0
     end_frame = total_frames
     if start_time is not None:
@@ -567,21 +429,17 @@ def load_video(
         end_frame = int(end_time * video_fps)
         end_frame = max(start_frame, min(end_frame, total_frames))
 
-    # 提取帧索引
     frame_indices = list(range(start_frame, end_frame))
     if fps is not None:
         target_frame_rate = fps
         frame_step = max(1, int(video_fps / target_frame_rate))
         frame_indices = frame_indices[::frame_step]
 
-    # 限制最大帧数
     if max_frames is not None and len(frame_indices) > max_frames:
         frame_indices = np.linspace(start_frame, end_frame - 1, max_frames, dtype=int)
 
-    # 提取帧
-    frames = vr.get_batch(frame_indices).asnumpy()  # 提取帧并转换为 NumPy 数组
+    frames = vr.get_batch(frame_indices).asnumpy()
 
-    # 调整帧大小
     if size is not None:
         h, w = frames.shape[1], frames.shape[2]
         scale_factor = size / min(h, w)
@@ -591,14 +449,12 @@ def load_video(
 
         resized_frames = []
         for frame in frames:
-            resized_frame = cv2.resize(frame, (new_w, new_h))  # 使用 OpenCV 调整大小
+            resized_frame = cv2.resize(frame, (new_w, new_h))
             resized_frames.append(resized_frame)
         frames = np.array(resized_frames)
 
-    # 计算时间戳
     timestamps = [i / video_fps for i in frame_indices]
 
-    # 时间填充
     if temporal_factor > 1:
         pad_length = temporal_factor - len(frames) % temporal_factor
         frames = np.concatenate([frames, np.repeat(frames[-1:], pad_length, axis=0)])
@@ -609,10 +465,7 @@ def load_video(
 
 def process_video(video_path, processor, s=None, e=None, aspect_ratio='avt', num_frames=None):
     fps = 1 if num_frames is None else None
-    # FFmpeg
     frames, timestamps = load_video(video_path, s, e, fps=fps, max_frames=num_frames)
-    # Decord
-    # frames, timestamps = load_video_from_ids(video_path, s, e, fps=fps, max_frames=num_frames)
 
     assert len(frames) == len(timestamps), "Number of frames and timestamps must match."
 
@@ -630,13 +483,6 @@ def process_video(video_path, processor, s=None, e=None, aspect_ratio='avt', num
 
 
 def tokenizer_multimodal_token(prompt, tokenizer, multimodal_token=DEFAULT_IMAGE_TOKEN, return_tensors=None):
-    """Tokenize text and multimodal tag to input_ids.
-
-    Args:
-        prompt (str): Text prompt (w/ multimodal tag), e.g., '<video>\nDescribe the video.'
-        tokenizer (transformers.PreTrainedTokenizer): Tokenizer object.
-        multimodal_token (int): Token index corresponding to the multimodal tag.
-    """
     multimodal_token_index = MODAL_INDEX_MAP.get(multimodal_token, None)
     if multimodal_token_index is None:
         input_ids = tokenizer(prompt, add_special_tokens=False).input_ids
