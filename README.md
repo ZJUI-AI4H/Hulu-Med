@@ -143,7 +143,7 @@ pip install -r requirements.txt
 
 ## 💻 Quick Start
 
-### Inference Example
+### 2D Example
 ```python
 import torch
 from transformers import AutoModelForCausalLM, AutoProcessor
@@ -197,6 +197,118 @@ outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip(
 print(outputs)
 
 ```
+### 3D Example
+```
+slices = load_images(
+    "./src/demo/amos_0013.nii", ##Support nii 3D input
+    nii_num_slices=160      
+)
+conversation = [
+        {
+            "role": "user",
+            "content": [
+               {"type": "video", "num_frames": len(slices)},
+                {"type": "text", "text": "This is a medical 3D scenario. Please generate a medical report for the given 3D medical images, including both findings and impressions."},
+            ]
+        }
+    ]
+modal='video'
+model=model.to("cuda:0")
+inputs = processor(
+        images=[slices] if modal != "text" else None,
+        text=conversation,
+        merge_size=2 if modal == "video" else 1,
+        return_tensors="pt"
+        )
+inputs = {k: v.cuda().to('cuda:0') if isinstance(v, torch.Tensor) else v for k, v in inputs.items()}
+if "pixel_values" in inputs:
+    inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+with torch.inference_mode():
+        output_ids = model.generate(
+            **inputs,
+            do_sample=True,
+            modals=[modal],
+            temperature=0.6,
+            max_new_tokens=8192,
+            use_cache=True,
+            pad_token_id=tokenizer.eos_token_id,
+        )
+
+outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
+print(outputs)
+```
+### Video Example
+```
+frames, timestamps = load_video("./src/demo/1min_demo.mp4", fps=1, max_frames=3000)
+conversation = [
+        {
+            "role": "user",
+            "content": [
+               {"type": "video", "num_frames": len(frames)},
+                {"type": "text", "text": "Please describe this video in detail."},
+            ]
+        }
+    ]
+modal='video'
+model=model.to("cuda:0")
+inputs = processor(
+        images=[frames] if modal != "text" else None,
+        text=conversation,
+        merge_size=2 if modal == "video" else 1,
+        return_tensors="pt"
+        )
+inputs = {k: v.cuda().to('cuda:0') if isinstance(v, torch.Tensor) else v for k, v in inputs.items()}
+if "pixel_values" in inputs:
+    inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+with torch.inference_mode():
+        output_ids = model.generate(
+            **inputs,
+            do_sample=True,
+            modals=[modal],
+            temperature=0.6,
+            max_new_tokens=8192,
+            use_cache=True,
+            pad_token_id=tokenizer.eos_token_id,
+        )
+
+outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
+print(outputs)
+```
+### Text Example
+```
+conversation = [
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "Hello, I have a headache, what should I do?"},
+            ]
+        }
+    ]
+modal='text'
+model=model.to("cuda:0")
+inputs = processor(
+        text=conversation,
+        merge_size=2 if modal == "video" else 1,
+        return_tensors="pt"
+        )
+inputs = {k: v.cuda().to('cuda:0') if isinstance(v, torch.Tensor) else v for k, v in inputs.items()}
+if "pixel_values" in inputs:
+    inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+with torch.inference_mode():
+        output_ids = model.generate(
+            **inputs,
+            do_sample=True,
+            modals=[modal],
+            temperature=0.6,
+            max_new_tokens=8192,
+            use_cache=True,
+            pad_token_id=tokenizer.eos_token_id,
+        )
+
+outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
+print(outputs)
+```
+
 
 ## 📊 Training
 
@@ -210,10 +322,7 @@ Our training data consists of 16.7M samples across four categories:
 - **General Text Data** (1.5M samples): Improving reasoning capabilities
 
 Download and prepare the data:
-```bash
-# Download data preparation scripts
-python scripts/prepare_data.py --output_dir ./data
-```
+Comming soon
 
 ## 🏗️ Model Architecture
 
