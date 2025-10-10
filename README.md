@@ -7,7 +7,7 @@
 [![ModelScope](https://img.shields.io/badge/ModelScope-Models-blue)](https://modelscope.cn/models/Med-Team/Hulu-Med)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
-[📄 Paper](https://arxiv.org/abs/xxxx.xxxxx) | [🤗 HuggingFace Models](https://huggingface.co/ZJU-AI4H/Hulu-Med) | [🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo](#demo)
+[📄 Paper](https://arxiv.org/abs/xxxx.xxxxx) | [🤗 Hulu-Med-8B](https://huggingface.co/ZJU-AI4H/Hulu-Med-8B) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B) | [🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo](#demo)
 
 </div>
 
