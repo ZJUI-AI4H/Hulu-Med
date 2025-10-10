@@ -1,6 +1,6 @@
-<h1 align="center">
-  <img src="Hulu-Med.png" width="50" style="vertical-align: middle; margin-right: 1px;" />
-  Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding
+<h1 style="display: flex; align-items: center; justify-content: center; text-align: left;">
+  <img src="Hulu-Med.png" width="50" style="margin-right: 15px; flex-shrink: 0;" />
+  <span>Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding</span>
 </h1>
 <div align="center">
 
