@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="Hulu-Med.png" width="50" style="vertical-align: middle; margin-right: -8px;" />
+  <img src="Hulu-Med.png" width="50" style="vertical-align: middle; margin-right: 1px;" />
   Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding
 </h1>
 <div align="center">
