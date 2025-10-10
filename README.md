@@ -1,5 +1,7 @@
-# Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding
-
+<h1 align="center">
+  <img src="Hulu-Med.png" width="50" style="vertical-align: middle; margin-right: -8px;" />
+  Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding
+</h1>
 <div align="center">
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/xxxx.xxxxx)
