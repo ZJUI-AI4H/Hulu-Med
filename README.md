@@ -1,9 +1,22 @@
-<div style="display: flex; align-items: center; justify-content: center;">
+<!-- <div style="display: flex; align-items: center; justify-content: center;">
   <img src="Hulu-Med.png" width="50" style="margin-right: 15px; flex-shrink: 0;">
   <h1 style="margin: 0; text-align: left;">
     Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding
   </h1>
+</div> -->
+<hr>
+
+<div style="display: flex; align-items: center; justify-content: center; padding: 20px 0;">
+  
+  <img src="Hulu-Med.png" width="65" style="margin-right: 25px;">
+  
+  <h1 style="margin: 0; text-align: left; font-size: 2.2em; line-height: 1.4; color: #333; font-weight: 600; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+    Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding
+  </h1>
+
 </div>
+
+<hr>
 <div align="center">
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/xxxx.xxxxx)
