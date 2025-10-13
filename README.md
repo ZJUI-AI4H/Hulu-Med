@@ -204,6 +204,7 @@ print(outputs)
 ```
 ### 3D Example
 ```
+# We unify the modeling of video and 3D inputs as extensions along the temporal or spatial dimension
 slices = load_images(
     "./src/demo/amos_0013.nii", ##Support nii 3D input
     nii_num_slices=160      
