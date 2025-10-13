@@ -7,7 +7,7 @@
 
 <div align="center">
 
-[![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/xxxx.xxxxx)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/2510.08668)
 [![HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-Models-yellow)](https://huggingface.co/ZJU-AI4H/Hulu-Med)
 [![ModelScope](https://img.shields.io/badge/ModelScope-Models-blue)](https://modelscope.cn/models/Med-Team/Hulu-Med)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
@@ -355,11 +355,14 @@ Hulu-Med consists of four core components:
 
 If you find Hulu-Med useful in your research, please cite:
 ```bibtex
-@article{jiang2025hulumed,
-  title={Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding},
-  author={Jiang, Songtao and Wang, Yuan and Hu, Tianxiang and others},
-  journal={arXiv preprint arXiv:xxxx.xxxxx},
-  year={2025}
+@misc{jiang2025hulumedtransparentgeneralistmodel,
+      title={Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding}, 
+      author={Songtao Jiang and Yuan Wang and Sibo Song and Tianxiang Hu and Chenyi Zhou and Bin Pu and Yan Zhang and Zhibo Yang and Yang Feng and Joey Tianyi Zhou and Jin Hao and Zijian Chen and Ruijia Wu and Tao Tang and Junhui Lv and Hongxia Xu and Hongwei Wang and Jun Xiao and Bin Feng and Fudong Zhu and Kenli Li and Weidi Xie and Jimeng Sun and Jian Wu and Zuozhu Liu},
+      year={2025},
+      eprint={2510.08668},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2510.08668}, 
 }
 ```
 
