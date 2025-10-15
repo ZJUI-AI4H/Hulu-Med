@@ -18,6 +18,7 @@
 
 ## 🔥 News
 
+- **[2025-10-15]** 🎉 Hulu-Med now supports Transformers integration! HuggingFace-compatible models (Hulu-Med-HF) released with simplified loading and inference. Integration with VLLM is ongoing.
 - **[2025-10-08]** Hulu-Med models and inference code released!
 
 ## 📖 Overview
@@ -35,6 +36,7 @@
 - 📊 **State-of-the-Art Performance**: Outperforms leading open-source models and competes with proprietary systems
 - ⚡ **Efficient Training**: Only 4,000-40,000 GPU hours required for 7B-32B variants
 - 🗂️ **Comprehensive Coverage**: Trained on 16.7M samples spanning 12 anatomical systems and 14 imaging modalities
+- 🤗 **Transformers Native**: Now with native HuggingFace Transformers support for easier integration
 
 ### Comprehensive Data Coverage
 
@@ -120,7 +122,10 @@ We provide three model variants with different parameter scales:
 | **Hulu-Med-14B** | 14B | Qwen3-14B | ~8,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-14B) |
 | **Hulu-Med-32B** | 32B | Qwen2.5-32B | ~40,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-32B) |
 
+**Note**: HuggingFace-compatible versions (Hulu-Med-HF) are also available for easier integration with the Transformers library.
+
 ## 🛠️ Installation
+
 ```bash
 # Clone the repository
 git clone https://github.com/your-org/Hulu-Med.git
@@ -142,17 +147,233 @@ pip install transformers==4.51.2 accelerate==1.7.0
 # Video processing dependencies
 pip install decord ffmpeg-python imageio opencv-python
 
+# For 3D medical image processing (NIfTI files)
+pip install nibabel
+
 # Install other dependencies
 pip install -r requirements.txt
 ```
 
 ## 💻 Quick Start
 
-### 2D Example
+We provide two ways to use Hulu-Med:
+
+### Option 1: Using HuggingFace Transformers (Recommended for Hulu-Med-HF models)
+
+For easier integration, use the HuggingFace-compatible models with native Transformers support:
+
+```python
+from transformers import AutoModelForCausalLM, AutoProcessor
+import torch
+
+model_path = "./Hulu-Med-14B-HF"
+
+# Load model and processor
+model = AutoModelForCausalLM.from_pretrained(
+    model_path,
+    trust_remote_code=True,
+    torch_dtype="bfloat16",
+    device_map="auto",
+    attn_implementation="flash_attention_2",
+)
+
+processor = AutoProcessor.from_pretrained(
+    model_path,
+    trust_remote_code=True
+)
+
+tokenizer = processor.tokenizer
+```
+
+#### Text-Only Example
+
+```python
+conversation = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "text", "text": "Hello, I have a headache, what should I eat?"},
+        ]
+    }
+]
+
+modal = 'text'
+inputs = processor(
+    conversation=conversation,
+    return_tensors="pt",
+    add_generation_prompt=True
+)
+
+inputs = {k: v.to(model.device) if isinstance(v, torch.Tensor) else v 
+          for k, v in inputs.items()}
+
+with torch.inference_mode():
+    output_ids = model.generate(
+        **inputs,
+        do_sample=True,
+        modals=[modal],
+        temperature=0.6,
+        max_new_tokens=4096,
+        use_cache=True,
+        pad_token_id=tokenizer.eos_token_id,
+    )
+
+# Decode output
+# use_think=False: Only return the final answer without thinking process
+# use_think=True: Include the model's reasoning/thinking process in the output
+outputs = processor.batch_decode(
+    output_ids,
+    skip_special_tokens=True,
+    use_think=False  # Set to True to see the thinking process
+)[0].strip()
+print(outputs)
+```
+
+#### 2D Image Example
+
+```python
+conversation = [
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "image",
+                "image": {
+                    "image_path": "./demo/demo.jpg",
+                }
+            },
+            {
+                "type": "text",
+                "text": "Generate a medical report for this image."
+            },
+        ]
+    }
+]
+
+inputs = processor(
+    conversation=conversation,
+    add_system_prompt=True,
+    add_generation_prompt=True,
+    return_tensors="pt"
+)
+
+inputs = {k: v.cuda() if isinstance(v, torch.Tensor) else v 
+          for k, v in inputs.items()}
+
+if "pixel_values" in inputs:
+    inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+
+output_ids = model.generate(**inputs, max_new_tokens=1024)
+outputs = processor.batch_decode(
+    output_ids,
+    skip_special_tokens=True,
+    use_think=False
+)[0].strip()
+print(outputs)
+```
+
+#### 3D Medical Image Example
+
+```python
+# Requires: pip install nibabel
+
+conversation = [
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "3d",
+                "3d": {
+                    "image_path": "./demo/amos_0013.nii",
+                    "nii_num_slices": 180,
+                    "nii_axis": 2,  # 0=sagittal, 1=coronal, 2=axial
+                }
+            },
+            {
+                "type": "text",
+                "text": "Generate a medical report for this 3D CT scan."
+            },
+        ]
+    }
+]
+
+inputs = processor(
+    conversation=conversation,
+    add_system_prompt=True,
+    add_generation_prompt=True,
+    return_tensors="pt"
+)
+
+inputs = {k: v.cuda() if isinstance(v, torch.Tensor) else v 
+          for k, v in inputs.items()}
+
+if "pixel_values" in inputs:
+    inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+
+output_ids = model.generate(**inputs, max_new_tokens=1024)
+outputs = processor.batch_decode(
+    output_ids,
+    skip_special_tokens=True,
+    use_think=False
+)[0].strip()
+print(outputs)
+```
+
+#### Video Example
+
+```python
+conversation = [
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "video",
+                "video": {
+                    "video_path": "./demo/1min_demo.mp4",
+                    "fps": 1,
+                    "max_frames": 1800
+                }
+            },
+            {
+                "type": "text",
+                "text": "Describe this video in detail."
+            },
+        ]
+    }
+]
+
+inputs = processor(
+    conversation=conversation,
+    add_system_prompt=True,
+    add_generation_prompt=True,
+    return_tensors="pt"
+)
+
+inputs = {k: v.cuda() if isinstance(v, torch.Tensor) else v 
+          for k, v in inputs.items()}
+
+if "pixel_values" in inputs:
+    inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+
+output_ids = model.generate(**inputs, max_new_tokens=1024)
+outputs = processor.batch_decode(
+    output_ids,
+    skip_special_tokens=True,
+    use_think=False
+)[0].strip()
+print(outputs)
+```
+
+**Understanding the `use_think` parameter:**
+- `use_think=False`: Returns only the final answer (default for most use cases)
+- `use_think=True`: Includes the model's internal reasoning/thinking process before the final answer
+
+### Option 2: Using Custom Loading (Original Method)
+
+For the original Hulu-Med models (non-HF versions):
+
 ```python
 import torch
-from transformers import AutoModelForCausalLM, AutoProcessor
-from hulumed import disable_torch_init, model_init, mm_infer
 from hulumed import disable_torch_init, model_init, mm_infer
 from hulumed.model import load_pretrained_model
 from hulumed.mm_utils import load_images, process_images, load_video, process_video, tokenizer_multimodal_token, get_model_name_from_path, KeywordsStoppingCriteria
@@ -160,161 +381,174 @@ from hulumed.model.processor import HulumedProcessor
 import os
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-model_path = "xxxxxx"
+model_path = "path/to/your/model"
 model_name = get_model_name_from_path(model_path)
-tokenizer, model, image_processor, context_len = load_pretrained_model(model_path, None, model_name,device_map='cuda:0')
-processor = HulumedProcessor(image_processor, tokenizer)
-slices = load_images(
-    "./demo/demo.jpg", 
+tokenizer, model, image_processor, context_len = load_pretrained_model(
+    model_path, None, model_name, device_map='cuda:0'
 )
+processor = HulumedProcessor(image_processor, tokenizer)
+```
+
+#### 2D Example (Original Method)
+
+```python
+slices = load_images("./demo/demo.jpg")
 conversation = [
-        {
-            "role": "user",
-            "content": [
-               {"type": "image"},
-                {"type": "text", "text": "Describe this image in detail."},
-            ]
-        }
-    ]
-modal='image'
-model=model.to("cuda:0")
+    {
+        "role": "user",
+        "content": [
+            {"type": "image"},
+            {"type": "text", "text": "Describe this image in detail."},
+        ]
+    }
+]
+modal = 'image'
+model = model.to("cuda:0")
 inputs = processor(
-        images=[slices] if modal != "text" else None,
-        text=conversation,
-        merge_size=2 if modal == "video" else 1,
-        return_tensors="pt"
-        )
+    images=[slices] if modal != "text" else None,
+    text=conversation,
+    merge_size=2 if modal == "video" else 1,
+    return_tensors="pt"
+)
 inputs = {k: v.cuda().to('cuda:0') if isinstance(v, torch.Tensor) else v for k, v in inputs.items()}
 if "pixel_values" in inputs:
     inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+
 with torch.inference_mode():
-        output_ids = model.generate(
-            **inputs,
-            do_sample=True,
-            modals=[modal],
-            temperature=0.6,
-            max_new_tokens=8192,
-            use_cache=True,
-            pad_token_id=tokenizer.eos_token_id,
-        )
+    output_ids = model.generate(
+        **inputs,
+        do_sample=True,
+        modals=[modal],
+        temperature=0.6,
+        max_new_tokens=8192,
+        use_cache=True,
+        pad_token_id=tokenizer.eos_token_id,
+    )
 
 outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
 print(outputs)
+```
 
-```
-### 3D Example
-```
+#### 3D Example (Original Method)
+
+```python
 # We unify the modeling of video and 3D inputs as extensions along the temporal or spatial dimension
 slices = load_images(
-    "./src/demo/amos_0013.nii", ##Support nii 3D input
-    nii_num_slices=160      
+    "./demo/amos_0013.nii",  # Support NIfTI 3D input
+    nii_num_slices=160
 )
 conversation = [
-        {
-            "role": "user",
-            "content": [
-               {"type": "video", "num_frames": len(slices)},
-                {"type": "text", "text": "This is a medical 3D scenario. Please generate a medical report for the given 3D medical images, including both findings and impressions."},
-            ]
-        }
-    ]
-modal='video'
-model=model.to("cuda:0")
+    {
+        "role": "user",
+        "content": [
+            {"type": "video", "num_frames": len(slices)},
+            {"type": "text", "text": "This is a medical 3D scenario. Please generate a medical report for the given 3D medical images, including both findings and impressions."},
+        ]
+    }
+]
+modal = 'video'
+model = model.to("cuda:0")
 inputs = processor(
-        images=[slices] if modal != "text" else None,
-        text=conversation,
-        merge_size=2 if modal == "video" else 1,
-        return_tensors="pt"
-        )
+    images=[slices] if modal != "text" else None,
+    text=conversation,
+    merge_size=2 if modal == "video" else 1,
+    return_tensors="pt"
+)
 inputs = {k: v.cuda().to('cuda:0') if isinstance(v, torch.Tensor) else v for k, v in inputs.items()}
 if "pixel_values" in inputs:
     inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+
 with torch.inference_mode():
-        output_ids = model.generate(
-            **inputs,
-            do_sample=True,
-            modals=[modal],
-            temperature=0.6,
-            max_new_tokens=8192,
-            use_cache=True,
-            pad_token_id=tokenizer.eos_token_id,
-        )
+    output_ids = model.generate(
+        **inputs,
+        do_sample=True,
+        modals=[modal],
+        temperature=0.6,
+        max_new_tokens=8192,
+        use_cache=True,
+        pad_token_id=tokenizer.eos_token_id,
+    )
 
 outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
 print(outputs)
 ```
-### Video Example
-```
-frames, timestamps = load_video("./src/demo/1min_demo.mp4", fps=1, max_frames=3000)
+
+#### Video Example (Original Method)
+
+```python
+frames, timestamps = load_video("./demo/1min_demo.mp4", fps=1, max_frames=3000)
 conversation = [
-        {
-            "role": "user",
-            "content": [
-               {"type": "video", "num_frames": len(frames)},
-                {"type": "text", "text": "Please describe this video in detail."},
-            ]
-        }
-    ]
-modal='video'
-model=model.to("cuda:0")
+    {
+        "role": "user",
+        "content": [
+            {"type": "video", "num_frames": len(frames)},
+            {"type": "text", "text": "Please describe this video in detail."},
+        ]
+    }
+]
+modal = 'video'
+model = model.to("cuda:0")
 inputs = processor(
-        images=[frames] if modal != "text" else None,
-        text=conversation,
-        merge_size=2 if modal == "video" else 1,
-        return_tensors="pt"
-        )
+    images=[frames] if modal != "text" else None,
+    text=conversation,
+    merge_size=2 if modal == "video" else 1,
+    return_tensors="pt"
+)
 inputs = {k: v.cuda().to('cuda:0') if isinstance(v, torch.Tensor) else v for k, v in inputs.items()}
 if "pixel_values" in inputs:
     inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+
 with torch.inference_mode():
-        output_ids = model.generate(
-            **inputs,
-            do_sample=True,
-            modals=[modal],
-            temperature=0.6,
-            max_new_tokens=8192,
-            use_cache=True,
-            pad_token_id=tokenizer.eos_token_id,
-        )
+    output_ids = model.generate(
+        **inputs,
+        do_sample=True,
+        modals=[modal],
+        temperature=0.6,
+        max_new_tokens=8192,
+        use_cache=True,
+        pad_token_id=tokenizer.eos_token_id,
+    )
 
 outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
 print(outputs)
 ```
-### Text Example
-```
+
+#### Text Example (Original Method)
+
+```python
 conversation = [
-        {
-            "role": "user",
-            "content": [
-                {"type": "text", "text": "Hello, I have a headache, what should I do?"},
-            ]
-        }
-    ]
-modal='text'
-model=model.to("cuda:0")
+    {
+        "role": "user",
+        "content": [
+            {"type": "text", "text": "Hello, I have a headache, what should I do?"},
+        ]
+    }
+]
+modal = 'text'
+model = model.to("cuda:0")
 inputs = processor(
-        text=conversation,
-        merge_size=2 if modal == "video" else 1,
-        return_tensors="pt"
-        )
+    text=conversation,
+    merge_size=2 if modal == "video" else 1,
+    return_tensors="pt"
+)
 inputs = {k: v.cuda().to('cuda:0') if isinstance(v, torch.Tensor) else v for k, v in inputs.items()}
 if "pixel_values" in inputs:
     inputs["pixel_values"] = inputs["pixel_values"].to(torch.bfloat16)
+
 with torch.inference_mode():
-        output_ids = model.generate(
-            **inputs,
-            do_sample=True,
-            modals=[modal],
-            temperature=0.6,
-            max_new_tokens=8192,
-            use_cache=True,
-            pad_token_id=tokenizer.eos_token_id,
-        )
+    output_ids = model.generate(
+        **inputs,
+        do_sample=True,
+        modals=[modal],
+        temperature=0.6,
+        max_new_tokens=8192,
+        use_cache=True,
+        pad_token_id=tokenizer.eos_token_id,
+    )
 
 outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0].strip()
 print(outputs)
 ```
-
 
 ## 📊 Training
 
@@ -328,7 +562,7 @@ Our training data consists of 16.7M samples across four categories:
 - **General Text Data** (1.5M samples): Improving reasoning capabilities
 
 Download and prepare the data:
-Comming soon
+Coming soon
 
 ## 🏗️ Model Architecture
 
@@ -350,7 +584,7 @@ Hulu-Med consists of four core components:
 - ✅ Medical Text Reasoning
 - ✅ Multilingual Medical QA
 - ✅ Rare Disease Diagnosis
-- More 
+- ✅ And more
 
 ## 📄 Citation
 
@@ -366,7 +600,6 @@ If you find Hulu-Med useful in your research, please cite:
       url={https://arxiv.org/abs/2510.08668}, 
 }
 ```
-
 
 ## 📜 License
 
