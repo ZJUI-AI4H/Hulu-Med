@@ -26,7 +26,7 @@
 **Hulu-Med** is a transparent medical vision-language model that unifies understanding across diverse modalities including **medical text, 2D/3D images, and videos**. Built with a focus on transparency and accessibility, Hulu-Med achieves state-of-the-art performance on 30 medical benchmarks while being trained entirely on public data.
 
 <div align="center">
-<img src="https://github.com/user-attachments/files/22758795/Github_fig.pdf" width="100%">
+<img src="./demo/overview.jpg" width="100%">
 </div>
 
 ### Key Features
