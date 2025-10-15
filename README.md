@@ -18,7 +18,7 @@
 
 ## 🔥 News
 
-- **[2025-10-15]** 🎉 Hulu-Med now supports Transformers integration! HuggingFace-compatible models (Hulu-Med-HF) released with simplified loading and inference. Integration with VLLM is ongoing. (HF-models are available now on ModelScope and coming soon to Hugging Face.)
+- **[2025-10-15]** 🎉 Hulu-Med now supports Transformers integration! HuggingFace-compatible models (Hulu-Med-HF) released with simplified loading and inference. Integration with VLLM is ongoing. The HF models are now available in the hf-version branch on Hugging Face.
 - **[2025-10-08]** Hulu-Med models and inference code released!
 
 ## 📖 Overview
@@ -118,9 +118,9 @@ We provide three model variants with different parameter scales:
 
 | Model | Parameters | LLM Base | Training Cost | HuggingFace | ModelScope |
 |-------|-----------|----------|---------------|-------------|------------|
-| **Hulu-Med-7B** | 7B | Qwen2.5-7B | ~4,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-7B) |
-| **Hulu-Med-14B** | 14B | Qwen3-14B | ~8,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-14B) |
-| **Hulu-Med-32B** | 32B | Qwen2.5-32B | ~40,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-32B) |
+| **Hulu-Med-7B** | 7B | Qwen2.5-7B | ~4,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B/tree/main/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-7B) |
+| **Hulu-Med-14B** | 14B | Qwen3-14B | ~8,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B/tree/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-14B) |
+| **Hulu-Med-32B** | 32B | Qwen2.5-32B | ~40,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B/tree/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-32B) |
 
 **Note**: HuggingFace-compatible versions (Hulu-Med-HF) are also available for easier integration with the Transformers library.
 
