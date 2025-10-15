@@ -18,7 +18,7 @@
 
 ## 🔥 News
 
-- **[2025-10-15]** 🎉 Hulu-Med now supports Transformers integration! HuggingFace-compatible models (Hulu-Med-HF) released with simplified loading and inference. Integration with VLLM is ongoing.
+- **[2025-10-15]** 🎉 Hulu-Med now supports Transformers integration! HuggingFace-compatible models (Hulu-Med-HF) released with simplified loading and inference. Integration with VLLM is ongoing. (HF-models are available now on ModelScope and coming soon to Hugging Face.)
 - **[2025-10-08]** Hulu-Med models and inference code released!
 
 ## 📖 Overview
