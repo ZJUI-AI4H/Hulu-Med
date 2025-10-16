@@ -12,13 +12,20 @@
 [![ModelScope](https://img.shields.io/badge/ModelScope-Models-blue)](https://modelscope.cn/models/Med-Team/Hulu-Med)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
-[📄 Paper](https://arxiv.org/abs/2510.08668) | [🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B/tree/HF-Version) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B/tree/HF-Version) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B/tree/HF-Version) | [🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo](https://46846059f6f4dfbd1c.gradio.live)
+[📄 Paper](https://arxiv.org/abs/2510.08668) | [🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B) | [🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo](https://46846059f6f4dfbd1c.gradio.live)
 
 </div>
 
 ## 🔥 News
 
-- **[2025-10-15]** 🎉 Hulu-Med now supports Transformers integration! HuggingFace-compatible models (Hulu-Med-HF) released with simplified loading and inference. Integration with VLLM is ongoing. *The HF models are now available in the **hf-version branch** on Hugging Face*.
+- **[2025-10-15]** 🎉 Hulu-Med now supports Transformers integration! HuggingFace-compatible models released with simplified loading and inference. Integration with VLLM is ongoing. *The HF models are now available in the **main branch** on Hugging Face*.
+- The model has been updated in the main branch of our Hugging Face repository. You can now load it directly using `AutoModelForCausalLM.from_pretrained` - the weights will be automatically downloaded.
+For users in regions with limited access, you can set the HF mirror environment variable to ensure reliable downloads:
+
+```bash
+export HF_ENDPOINT=https://hf-mirror.com
+```
+
 - **[2025-10-08]** Hulu-Med models and inference code released!
 
 ## 📖 Overview
@@ -166,7 +173,7 @@ For easier integration, use the HuggingFace-compatible models with native Transf
 from transformers import AutoModelForCausalLM, AutoProcessor
 import torch
 
-model_path = "ZJU-AI4H/Hulu-Med-7b-HF"
+model_path = "ZJU-AI4H/Hulu-Med-7B"
 
 # Load model and processor
 model = AutoModelForCausalLM.from_pretrained(
