@@ -118,7 +118,7 @@ We provide three model variants with different parameter scales:
 
 | Model | Parameters | LLM Base | Training Cost | HuggingFace | ModelScope |
 |-------|-----------|----------|---------------|-------------|------------|
-| **Hulu-Med-7B** | 7B | Qwen2.5-7B | ~4,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B/tree/main/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-7B) |
+| **Hulu-Med-7B** | 7B | Qwen2.5-7B | ~4,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B/tree/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-7B) |
 | **Hulu-Med-14B** | 14B | Qwen3-14B | ~8,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B/tree/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-14B) |
 | **Hulu-Med-32B** | 32B | Qwen2.5-32B | ~40,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B/tree/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-32B) |
 
