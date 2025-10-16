@@ -166,7 +166,7 @@ For easier integration, use the HuggingFace-compatible models with native Transf
 from transformers import AutoModelForCausalLM, AutoProcessor
 import torch
 
-model_path = "Dwonloaded from https://huggingface.co/ZJU-AI4H/Hulu-Med-32B/tree/HF-Version"
+model_path = "ZJU-AI4H/Hulu-Med-7b-HF"
 
 # Load model and processor
 model = AutoModelForCausalLM.from_pretrained(
