@@ -128,7 +128,7 @@ We provide three model variants with different parameter scales:
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/Hulu-Med.git
+git clone https://github.com/ZJUI-AI4H/Hulu-Med.git
 cd Hulu-Med
 
 # Create conda environment
@@ -166,7 +166,7 @@ For easier integration, use the HuggingFace-compatible models with native Transf
 from transformers import AutoModelForCausalLM, AutoProcessor
 import torch
 
-model_path = "./Hulu-Med-14B-HF"
+model_path = "Dwonloaded from https://huggingface.co/ZJU-AI4H/Hulu-Med-32B/tree/HF-Version"
 
 # Load model and processor
 model = AutoModelForCausalLM.from_pretrained(
