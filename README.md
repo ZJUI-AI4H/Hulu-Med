@@ -12,13 +12,13 @@
 [![ModelScope](https://img.shields.io/badge/ModelScope-Models-blue)](https://modelscope.cn/models/Med-Team/Hulu-Med)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
-[📄 Paper](https://arxiv.org/abs/2510.08668) | [🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B/tree/main/HF-Version) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B/tree/HF-Version) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B/tree/HF-Version) | [🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo](#demo)
+[📄 Paper](https://arxiv.org/abs/2510.08668) | [🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B/tree/HF-Version) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B/tree/HF-Version) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B/tree/HF-Version) | [🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo](#demo)
 
 </div>
 
 ## 🔥 News
 
-- **[2025-10-15]** 🎉 Hulu-Med now supports Transformers integration! HuggingFace-compatible models (Hulu-Med-HF) released with simplified loading and inference. Integration with VLLM is ongoing. The HF models are now available in the hf-version branch on Hugging Face.
+- **[2025-10-15]** 🎉 Hulu-Med now supports Transformers integration! HuggingFace-compatible models (Hulu-Med-HF) released with simplified loading and inference. Integration with VLLM is ongoing. *The HF models are now available in the **hf-version branch** on Hugging Face*.
 - **[2025-10-08]** Hulu-Med models and inference code released!
 
 ## 📖 Overview
