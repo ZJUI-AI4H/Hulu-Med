@@ -12,7 +12,7 @@
 [![ModelScope](https://img.shields.io/badge/ModelScope-Models-blue)](https://modelscope.cn/models/Med-Team/Hulu-Med)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
-[📄 Paper](https://arxiv.org/abs/2510.08668) | [🤗 Hulu-Med-4B](https://huggingface.co/ZJU-AI4H/Hulu-Med-4B) |[🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B) | [🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo (Now Open)](https://34c3c28c58bff09d29.gradio.live)
+[📄 Paper](https://arxiv.org/abs/2510.08668) | [🤗 Hulu-Med-4B](https://huggingface.co/ZJU-AI4H/Hulu-Med-4B) |[🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B) | [🔮 Hulu-Med-30A3](https://modelscope.cn/models/Med-Team/Hulu-30A3) |[🔮 Hulu-Med-235A22](https://modelscope.cn/models/Med-Team/Hulu-235A22) |[🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo (Now Open)](https://34c3c28c58bff09d29.gradio.live)
 
 </div>
 
