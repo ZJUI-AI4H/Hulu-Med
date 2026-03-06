@@ -17,7 +17,7 @@
 </div>
 
 ## 🔥 News
-- **[2026-2-24]** 🏆 We have released our [**🤗 Hulu-Med-235A22**](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) and [**🤗 Hulu-Med-30BA3**](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) models. Please have a try~
+- **[2026-2-24]** 🏆 We have released our [**🤗 Hulu-Med-235A22**](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) and [**🤗 Hulu-Med-30BA3**](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3). Please have a try.
 - **[2025-11-27]** ⚡ **Hulu-Med** is now compatible with the latest **vLLM**, offering **faster inference** and **tensor parallel** support! Thank you all for your patience and feedback 💪   **[see here for installation](#-vllm-installation)**
 - **[2025-11-18]** 🎊 We released **Hulu-Med-4B**, a lightweight model with strong multimodal and text reasoning abilities that surpasses MedGemma-4B and Lingshu-7B!
 - **[2025-11-01]** 📊 Releasing our new evaluation code, **MedUniEval**! Built on MedEvalKit, MedUniEval is designed for the comprehensive evaluation of medical visual-language models across various modalities—including text, 2D, 3D, and video. More benchmarks are coming soon. Some processed evaluation data are available [here](https://modelscope.cn/models/Med-Team/Hulu-Med).
