@@ -17,7 +17,7 @@
 </div>
 
 ## 🔥 News
-- **[2026-2-24]** 🏆 Frontier Performance & Clinical Validation!** We have released the latest benchmark results and clinical reader studies for our **Hulu-Med-235B-A22B** and **30B-A3B** sparse Mixture-of-Experts (MoE) models[cite: 22]. Hulu-Med is redefining the boundary of transparent medical AI:
+- **[2026-2-24]** 🏆 Frontier Performance & Clinical Validation!** We have released the latest benchmark results and clinical reader studies for our [**🤗 Hulu-Med-235A22**](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) and [**🤗 Hulu-Med-30BA3**](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) sparse Mixture-of-Experts (MoE) models. Hulu-Med is redefining the boundary of transparent medical AI:
     * **Unprecedented SOTA:** Benchmarked against **68 models** across **63 benchmarks**. Hulu-Med surpasses all open-source models and outperforms proprietary giants like **GPT-5.2** and **Gemini-3-Pro** on 48 out of 60 benchmarks.
     * **Clinical-Grade Precision:** In five reader studies with board-certified clinicians (6-17 years experience), Hulu-Med demonstrated expert-level reasoning. Notably, radiologists preferred Hulu-Med’s reports over clinician-authored ones in **76.4%** of cases.
     * **Specialty Mastery:** Outperformed specialized models in **Pathology** (15/16 benchmarks), **Ophthalmology** (exceeding GPT-5.2 and Gemini-3-Pro by >20%), and **Radiology**.
