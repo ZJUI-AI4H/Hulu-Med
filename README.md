@@ -17,12 +17,7 @@
 </div>
 
 ## 🔥 News
-- **[2026-2-24]** 🏆 Frontier Performance & Clinical Validation! We have released the latest benchmark results and clinical reader studies for our [**🤗 Hulu-Med-235A22**](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) and [**🤗 Hulu-Med-30BA3**](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) sparse Mixture-of-Experts (MoE) models. Hulu-Med is redefining the boundary of transparent medical AI:
-    * **Unprecedented SOTA:** Benchmarked against **68 models** across **63 benchmarks**. Hulu-Med surpasses all open-source models and outperforms proprietary giants like **GPT-5.2** and **Gemini-3-Pro** on 48 out of 60 benchmarks.
-    * **Clinical-Grade Precision:** In five reader studies with board-certified clinicians (6-17 years experience), Hulu-Med demonstrated expert-level reasoning. Notably, radiologists preferred Hulu-Med’s reports over clinician-authored ones in **76.4%** of cases.
-    * **Specialty Mastery:** Outperformed specialized models in **Pathology** (15/16 benchmarks), **Ophthalmology** (exceeding GPT-5.2 and Gemini-3-Pro by >20%), and **Radiology**.
-    * **Complex Modalities:** Established new frontiers in **3D volumetric understanding** and **Long-Surgical Video QA** (supporting sequences up to 120 minutes), surpassing the context limits of current proprietary API-based models.
-    * **NEJM Image Challenge:** Achieved **85.0% accuracy**, significantly surpassing clinician performance (46.3%), GPT-5.2 (65.2%), and Gemini-3-Pro (68.5%).
+- **[2026-2-24]** 🏆 We have released our [**🤗 Hulu-Med-235A22**](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) and [**🤗 Hulu-Med-30BA3**](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) models. Please have a try~
 - **[2025-11-27]** ⚡ **Hulu-Med** is now compatible with the latest **vLLM**, offering **faster inference** and **tensor parallel** support! Thank you all for your patience and feedback 💪   **[see here for installation](#-vllm-installation)**
 - **[2025-11-18]** 🎊 We released **Hulu-Med-4B**, a lightweight model with strong multimodal and text reasoning abilities that surpasses MedGemma-4B and Lingshu-7B!
 - **[2025-11-01]** 📊 Releasing our new evaluation code, **MedUniEval**! Built on MedEvalKit, MedUniEval is designed for the comprehensive evaluation of medical visual-language models across various modalities—including text, 2D, 3D, and video. More benchmarks are coming soon. Some processed evaluation data are available [here](https://modelscope.cn/models/Med-Team/Hulu-Med).
