@@ -57,6 +57,21 @@ Our training corpus encompasses:
 - **14 Medical Imaging Modalities**: CT, MRI, X-Ray, Ultrasound, PET, OCT, Endoscopy, Microscopy, Histopathology, Fundus, Dermoscopy, Angiography, Digital Photograph, and Medical Chart
 - **Diverse Downstream Tasks**: Medical Dialogue, Anomaly Detection, Prognosis Prediction, Treatment Planning, Surgical Skill Assessment, Education, Medical Report Generation, Surgical Phase Recognition, Medical Computation, and more
 
+## 🚀 Model Zoo
+
+We provide three model variants with different parameter scales:
+
+| Model | Parameters | LLM Base | Training Cost | HuggingFace | ModelScope |
+|-------|-----------|----------|---------------|-------------|------------|
+| **Hulu-Med-4B** | 4B | Qwen3-VL-4B | ~1,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-4B) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med/files) |
+| **Hulu-Med-7B** | 7B | Qwen2.5-7B | ~4,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med/files) |
+| **Hulu-Med-14B** | 14B | Qwen3-14B | ~8,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med/files) |
+| **Hulu-Med-30A3** | 30B | Qwen3-VL-30A3B | ~3,200 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-30A3) |
+| **Hulu-Med-32B** | 32B | Qwen2.5-32B | ~40,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med/files) |
+| **Hulu-Med-235A22** | 235B | Qwen3-VL-235A22B | ~10,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-235A22) |
+
+**Note**: HuggingFace-compatible versions (Hulu-Med-HF) are also available for easier integration with the Transformers library.
+
 ## 🏆 Performance Highlights
 
 ### Medical Multimodal Benchmarks
@@ -125,17 +140,6 @@ Performance comparison on medical text benchmarks (**bold** indicates the best m
 | **Hulu-Med-14B** | **68.0** | **23.2** | **68.5** | **37.7** | **79.8** | **70.4** | **78.1** | **83.3** |
 | **Hulu-Med-32B** | **72.9** | **24.2** | **68.8** | **41.8** | **80.8** | **72.8** | **80.4** | **85.6** |
 
-## 🚀 Model Zoo
-
-We provide three model variants with different parameter scales:
-
-| Model | Parameters | LLM Base | Training Cost | HuggingFace | ModelScope |
-|-------|-----------|----------|---------------|-------------|------------|
-| **Hulu-Med-7B** | 7B | Qwen2.5-7B | ~4,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B/tree/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-7B) |
-| **Hulu-Med-14B** | 14B | Qwen3-14B | ~8,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B/tree/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-14B) |
-| **Hulu-Med-32B** | 32B | Qwen2.5-32B | ~40,000 GPU hours | [🤗 Link](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B/tree/HF-Version) | [🔮 Link](https://modelscope.cn/models/Med-Team/Hulu-Med-32B) |
-
-**Note**: HuggingFace-compatible versions (Hulu-Med-HF) are also available for easier integration with the Transformers library.
 
 ## 🛠️ Installation
 
