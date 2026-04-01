@@ -12,11 +12,12 @@
 [![ModelScope](https://img.shields.io/badge/ModelScope-Models-blue)](https://modelscope.cn/models/Med-Team/Hulu-Med)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
-[📄 Paper](https://arxiv.org/abs/2510.08668) [🤗 Hulu-Med-30A3](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) |[🤗 Hulu-Med-235A22](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) | [🤗 Hulu-Med-4B](https://huggingface.co/ZJU-AI4H/Hulu-Med-4B) |[🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B)  |[🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo (Now Open)](https://34c3c28c58bff09d29.gradio.live)
+[📄 Paper](https://arxiv.org/abs/2510.08668) [🤗 Hulu-Med-Flash-Preview-27B](https://huggingface.co/ZJU-AI4H/Hulu-Med-Flash-Preview-27B)| [🤗 Hulu-Med-30A3](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) |[🤗 Hulu-Med-235A22](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) | [🤗 Hulu-Med-4B](https://huggingface.co/ZJU-AI4H/Hulu-Med-4B) |[🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B)  |[🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo (Now Open)](https://34c3c28c58bff09d29.gradio.live)
 
 </div>
 
 ## 🔥 News
+- **[2026-04-01]** 🚀 We released [**🤗 Hulu-Med-Flash-Preview-27B**](https://huggingface.co/ZJU-AI4H/Hulu-Med-Flash-Preview-27B). This version features shorter CoT reasoning for faster throughput and achieves an impressive 64.5 on HealthBench (43.7 on Hard set)! ⚡
 - **[2026-2-24]** 🏆 We have released our [**🤗 Hulu-Med-235A22**](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) and [**🤗 Hulu-Med-30BA3**](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3). Please have a try.
 - **[2025-11-27]** ⚡ **Hulu-Med** is now compatible with the latest **vLLM**, offering **faster inference** and **tensor parallel** support! Thank you all for your patience and feedback 💪   **[see here for installation](#-vllm-installation)**
 - **[2025-11-18]** 🎊 We released **Hulu-Med-4B**, a lightweight model with strong multimodal and text reasoning abilities that surpasses MedGemma-4B and Lingshu-7B!
