@@ -1,9 +1,14 @@
-<div style="display: flex; align-items: center; justify-content: center;">
+<!-- <div style="display: flex; align-items: center; justify-content: center;">
   <img src="Hulu-Med.png" width="50" style="margin-right: 15px; flex-shrink: 0;">
   <h1 style="margin: 0; text-align: left;">
     Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding
   </h1>
 </div>
+
+<div align="center"> -->
+
+
+# <img src="https://github.com/ZJUI-AI4H/Hulu-Med/blob/main/Hulu-Med.png" width="50" align="left"> Hulu-Med: A Transparent Generalist Model towards Holistic Medical Vision-Language Understanding
 
 <div align="center">
 
@@ -12,7 +17,8 @@
 [![ModelScope](https://img.shields.io/badge/ModelScope-Models-blue)](https://modelscope.cn/models/Med-Team/Hulu-Med)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
-[📄 Paper](https://arxiv.org/abs/2510.08668)|[🤗 Hulu-Med-Flash-Preview-27B](https://huggingface.co/ZJU-AI4H/Hulu-Med-Flash-Preview-27B)| [🤗 Hulu-Med-30A3](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) |[🤗 Hulu-Med-235A22](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) | [🤗 Hulu-Med-4B](https://huggingface.co/ZJU-AI4H/Hulu-Med-4B) |[🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) |[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B)  |[🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo (Now Open)](https://34c3c28c58bff09d29.gradio.live)
+[🤗 Hulu-Med-Flash-Preview-27B](https://huggingface.co/ZJU-AI4H/Hulu-Med-Flash-Preview-27B)| [🤗 Hulu-Med-30A3](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) |[🤗 Hulu-Med-235A22](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) | [🤗 Hulu-Med-4B](https://huggingface.co/ZJU-AI4H/Hulu-Med-4B) |[🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) |
+[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B)  |[🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo (Now Open)](https://34c3c28c58bff09d29.gradio.live)
 
 </div>
 
