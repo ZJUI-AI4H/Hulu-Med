@@ -18,7 +18,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
 [🤗 Hulu-Med-Flash-Preview-27B](https://huggingface.co/ZJU-AI4H/Hulu-Med-Flash-Preview-27B)| [🤗 Hulu-Med-30A3](https://huggingface.co/ZJU-AI4H/Hulu-Med-30A3) |[🤗 Hulu-Med-235A22](https://huggingface.co/ZJU-AI4H/Hulu-Med-235A22) | [🤗 Hulu-Med-4B](https://huggingface.co/ZJU-AI4H/Hulu-Med-4B) |[🤗 Hulu-Med-7B](https://huggingface.co/ZJU-AI4H/Hulu-Med-7B) |
-[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B)  |[🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo (Now Open)](https://34c3c28c58bff09d29.gradio.live)
+[🤗 Hulu-Med-14B](https://huggingface.co/ZJU-AI4H/Hulu-Med-14B) |[🤗 Hulu-Med-32B](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B)  |[🔮 ModelScope Models](https://modelscope.cn/models/Med-Team/Hulu-Med) | [📊 Demo (Now Open)](https://79aafa693c9637a31d.gradio.live)
 
 </div>
 
