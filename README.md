@@ -13,7 +13,7 @@
 <div align="center">
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv-red)](https://arxiv.org/abs/2510.08668)
-[![HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-Models-yellow)](https://huggingface.co/ZJU-AI4H/Hulu-Med-32B)
+[![HuggingFace](https://img.shields.io/badge/🤗%20Hugging%20Face-Models-yellow)](https://huggingface.co/collections/ZJU-AI4H/hulu-med)
 [![ModelScope](https://img.shields.io/badge/ModelScope-Models-blue)](https://modelscope.cn/models/Med-Team/Hulu-Med)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](LICENSE)
 
