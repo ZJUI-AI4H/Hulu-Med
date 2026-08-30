@@ -748,11 +748,14 @@ If you find Hulu-Med useful in your research, please cite:
 }
 ```
 ```bibtex
-@article{jiang2025omniv,
-  title={Omniv-med: Scaling medical vision-language model for universal visual understanding},
-  author={Jiang, Songtao and Wang, Yuan and Song, Sibo and Zhang, Yan and Meng, Zijie and Lei, Bohan and Wu, Jian and Sun, Jimeng and Liu, Zuozhu},
-  journal={arXiv preprint arXiv:2504.14692},
-  year={2025}
+@misc{jiang2025omnivmedscalingmedicalvisionlanguage,
+      title={OmniV-Med: Scaling Medical Vision-Language Model for Universal Visual Understanding}, 
+      author={Songtao Jiang and Yuan Wang and Sibo Song and Yan Zhang and Zijie Meng and Bohan Lei and Jian Wu and Jimeng Sun and Zuozhu Liu},
+      year={2025},
+      eprint={2504.14692},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2504.14692}, 
 }
 ```
 
